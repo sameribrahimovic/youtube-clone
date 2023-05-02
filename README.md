@@ -82,3 +82,37 @@ subscribedTo User[] @relation("Subscribers")
 - in next.config.js add AWS S3 domains so we can use next Image,
 - install timeAgo library and configure it in /lib/data.js,
 - add links to a single page, and user profile
+
+5. Single video page
+
+- Create the file pages/video/[id].js
+- Create a getVideo function in lib/data.js - through this, we get the details of a video, including the author info,
+- install package for video player - npm install react-player
+- Import in [id].js :
+
+  - import dynamic from 'next/dynamic',
+  - const ReactPlayer = dynamic(() => import('react-player/lazy'), { ssr: false })
+
+- add into jsx :
+  <ReactPlayer
+          className='react-player absolute top-0 left-0'
+          url={video.url}
+          width='100%'
+          height='100%'
+          controls={true}
+          light={video.thumbnail}
+        />
+- split scree on 2/3 for main video, and 1/3 for side bar that show 3 more videos from db
+  using Tailwind md:w-2/3 and md:w-1/3
+- modify getVideos() to get only 3 videos on home page using "take" prisma parameter
+  to limit the nymber of returned items,
+  /lib/data.js :
+  if (options.take) data.take = options.take
+
+  pages/video/[id].js :
+  let videos = await getVideos({}, prisma)
+  let videos = await getVideos({ take: 3 }, prisma)
+
+6. User(Chanel) profile page
+
+-
