@@ -1,9 +1,11 @@
 import prisma from "lib/prisma";
+import Head from "next/head";
 import Link from "next/link";
 import timeago from "lib/timeago";
 import { getVideo, getVideos } from "lib/data.js";
 import dynamic from "next/dynamic";
 const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false });
+import Heading from "components/Heading";
 import Video from "components/Video";
 
 export default function SingleVideo({ video, videos }) {
@@ -11,13 +13,12 @@ export default function SingleVideo({ video, videos }) {
 
   return (
     <>
-      <header className="h-14 flex pt-5 px-5 pb-2">
-        <Link href={`/`}>
-          <a className="underline">Home</a>
-        </Link>
-
-        <div className="grow"></div>
-      </header>
+      <Head>
+        <title>{video.title}</title>
+        <meta name="description" content={video.title} />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <Heading />
 
       <div className="h-screen flex">
         {/* md:w-2/3 - set width to 66,6% - 2/3 of full width */}

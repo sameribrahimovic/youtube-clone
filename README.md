@@ -122,5 +122,3 @@ subscribedTo User[] @relation("Subscribers")
 - print the user’s information, and use the components/Videos component to list the user’s videos
   - import Videos from 'components/Videos'
   - import Link from 'next/link'
-
-7.
