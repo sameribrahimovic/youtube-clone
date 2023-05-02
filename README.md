@@ -72,3 +72,13 @@ subscribedTo User[] @relation("Subscribers")
 - create AWS account and upload some sample videos and images to bucket,
 - in terminal run : npm install aws-sdk,
 - add import import AWS from 'aws-sdk' to /api/utils.js
+
+4. Home page
+
+- add data fetching function getVideos() in lib/data.js to get all videos from db,
+- import earlier created function in index.js for use there,
+- crete two new components Video.js and Videos.js - which iterates over the videos and prints them,
+- add getServerSideProps(),
+- in next.config.js add AWS S3 domains so we can use next Image,
+- install timeAgo library and configure it in /lib/data.js,
+- add links to a single page, and user profile
