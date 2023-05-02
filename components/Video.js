@@ -4,7 +4,7 @@ import timeago from "lib/timeago";
 
 export default function Video({ video }) {
   return (
-    <div className="bg-white">
+    <div>
       <div className="px-5 pb-5">
         {video.thumbnail && (
           <Link href={`/video/${video.id}`}>

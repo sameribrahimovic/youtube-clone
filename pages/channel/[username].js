@@ -11,11 +11,6 @@ export default function Channel({ user, videos }) {
 
   return (
     <>
-      <Head>
-        <title>Channel of {user.name}</title>
-        <meta name="description" content={`Channel of ${user.name}`} />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       <Heading />
       <div>
         <div className="flex justify-between">

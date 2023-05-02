@@ -7,13 +7,13 @@ export default function Heading() {
   return (
     <header className="h-14 flex pt-5 px-5 pb-2">
       <div className="text-xl">
-        {router.asPath === "/" ? (
+        {/* {router.asPath === "/" ? (
           <p>YouTube clone</p>
-        ) : (
-          <Link href={`/`}>
-            <a className="underline">Home</a>
-          </Link>
-        )}
+        ) : ( */}
+        <Link href={`/`}>
+          <a>YouTube clone</a>
+        </Link>
+        {/* )} */}
       </div>
 
       <div className="grow ml-10 -mt-1"></div>

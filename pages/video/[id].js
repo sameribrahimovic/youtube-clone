@@ -13,11 +13,6 @@ export default function SingleVideo({ video, videos }) {
 
   return (
     <>
-      <Head>
-        <title>{video.title}</title>
-        <meta name="description" content={video.title} />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       <Heading />
 
       <div className="h-screen flex">
