@@ -122,3 +122,64 @@ subscribedTo User[] @relation("Subscribers")
 - print the user’s information, and use the components/Videos component to list the user’s videos
   - import Videos from 'components/Videos'
   - import Link from 'next/link'
+
+7. Pagination
+
+- Idea is to show some videos, and hva a load more button to load more videos,
+- Limit to 3 videos that can be displayed on the home page,
+- Create a lib/config.js to stor ammount of videos that can be displayed on page
+- import amount from config.js into data.js and use that as a default value for take :
+  data.take = options.take || amount
+- add load more button as component and import in index.js
+- When the button is clicked we’ll fire a GET API request to /api/videos.js to get more videos,
+- in components/LoadMore.js call this onClick event to load more videos from db
+- pass the list of videos to LoadMore:
+  <LoadMore videos={videos} />
+
+- So it can pass the length of this videos array as the skip parameter:
+
+  export default function LoadMore({ videos }) {
+  ...
+  onClick={async () => {
+  const url = `/api/videos?skip=${videos.length}`
+  ...
+
+- declare the videos state using useState, setting the initial state to the value of initialVideos :
+
+export default function Home({ initialVideos }) {
+const [videos, setVideos] = useState(initialVideos)
+...
+<LoadMore videos={videos} setVideos={setVideos} />
+}
+
+- inside LoadMore we can update the videos list using setVideos:
+  export default function LoadMore({ videos, setVideos }) {
+  ...
+  setVideos([...videos, ...data])
+
+- create a reachedEnd state variable and use it to conditionally show the LoadMore component, and we pass setReachedEnd to LoadMore:
+
+export default function Home({ initialVideos }) {
+const [videos, setVideos] = useState(initialVideos)
+const [reachedEnd, setReachedEnd] = useState(false)
+...
+<Videos videos={videos} />
+{!reachedEnd && (
+<LoadMore
+          videos={videos}
+          setVideos={setVideos}
+          setReachedEnd={setReachedEnd}
+        />
+)}
+}
+
+- Inside components/LoadMore.js set reachedEnd to true if reached the end of the list, which means the number of videos returned is less than the value of amount:
+  - export default function LoadMore({ videos, setVideos, setReachedEnd }) {
+    ...
+    if (data.length < amount) {
+    setReachedEnd(true)
+    }
+    ...
+    }
+
+8.
