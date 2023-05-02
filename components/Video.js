@@ -4,7 +4,7 @@ import timeago from "lib/timeago";
 
 export default function Video({ video }) {
   return (
-    <div className="">
+    <div className="bg-white">
       <div className="px-5 pb-5">
         {video.thumbnail && (
           <Link href={`/video/${video.id}`}>
@@ -32,11 +32,11 @@ export default function Video({ video }) {
           )}
           <div>
             <Link href={`/video/${video.id}`}>
-              <a className="text-lg font-bold text-white">{video.title}</a>
+              <a className="text-lg font-bold ">{video.title}</a>
             </Link>
             <div className="">
               <div className="">
-                <div className="text-gray-400">
+                <div>
                   <Link href={`/channel/${video.author.username}`}>
                     <a className="mr-2 underline cursor-pointer">
                       {video.author.name}

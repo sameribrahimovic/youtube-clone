@@ -115,4 +115,12 @@ subscribedTo User[] @relation("Subscribers")
 
 6. User(Chanel) profile page
 
--
+- Each user has a channel on the URL channel/<USERNAME>
+- create a file pages/channel/[username].js
+- getUser() to get user from db - add into lib/data.js,
+- change getVideos() to only return the videos of a particular person
+- print the user’s information, and use the components/Videos component to list the user’s videos
+  - import Videos from 'components/Videos'
+  - import Link from 'next/link'
+
+7.
