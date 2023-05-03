@@ -182,4 +182,16 @@ const [reachedEnd, setReachedEnd] = useState(false)
     ...
     }
 
-8.
+8. Implement login, create profile by choosing name, username and avata
+
+- First we add a login button in the Heading component,
+- In pages/index.js redirect to the /setup route if the user does not have a name set up:
+  if (session && !session.user.name) {
+  router.push('/setup')
+  }
+- Create that page in pages/setup.js and POST form in it to send POST request to /api/setup endpoint,
+- use a middleware : npm install multiparty next-connect@0.12.2
+- Create the file middleware/middleware.js - to make the files information available in the API route,
+- Create lib/upload.js,
+- Create pages/api/setup.js where we set up the API route to use the middleware created,
+- since we already have created user, all we need to do is to update it's data in /api/setup endpoint
