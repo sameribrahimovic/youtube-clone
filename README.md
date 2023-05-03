@@ -211,4 +211,36 @@ const [reachedEnd, setReachedEnd] = useState(false)
   </a>
   </Link>
 
-10.
+10. Subscriptions
+
+Planing:
+
+1. show the subscribers count in the channels pages
+
+2. add a button on the channels to subscribe. Once subscribed, this will turn into an unsubscribe button
+3. have a “subscriptions” page that lists the videos of the people you’re subscribed to
+
+~ Show the subscribers count
+
+- In lib/data.js add a getSubscribersCount() function that given a username returns the number of subscribers,
+- In pages/channel/[username].js import and use this in getServerSideProps() and pass its return value to the component as a prop,
+
+~ Allow users to subscribe and show the subscribed state
+
+- Create a components/SubscribedButton.js file, and import in pages/channel/[username].js
+- when user clik on subscribe button, send POST request to /api/subscribe with the subscribeTo data,
+- create the file pages/api/subscribe.js in wich we first validate the existance of the current user, and the user you want to subscribe to,
+- Finally we create a subscription using a special syntax that uses connect to connect 2 users together via the subscribedTo relation, as it’s a many-to-many self relation in the database:
+  ...
+  connect: [{ id: req.body.subscribeTo }],
+  ...
+- also create a unsubsrcibe.js to allow users to unsubscribe from user/chanel - It’s the same code as subscribe, except it uses disconnect to delete the relation:
+  ...
+  disconnect: [{ id: req.body.unsubscribeTo }],
+  ...
+
+~ Add a subscriptions page
+
+- Create a pages/subscriptions.js - similar code like index.js but we pass a subscriptions parameter with the value of the current user id:
+  let videos = await getVideos({ subscriptions: session.user.id }, prisma)
+- link to this page in the Heading component
