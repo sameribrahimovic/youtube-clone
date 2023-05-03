@@ -195,3 +195,20 @@ const [reachedEnd, setReachedEnd] = useState(false)
 - Create lib/upload.js,
 - Create pages/api/setup.js where we set up the API route to use the middleware created,
 - since we already have created user, all we need to do is to update it's data in /api/setup endpoint
+
+9. User info next to logout button
+
+- if the user is logged in, we need to show it's username and avatar next to logout btn,
+- In components/Heading.js :
+  {session && (
+  <Link href={`/channel/${session.user.username}`}>
+  <a className='flex'>
+  <img
+              src={session.user.image}
+              className='h-8 mr-2 mb-2 -mt-1 w-8 rounded-full'
+            />
+  <p className='mr-3'>{session.user.name}</p>
+  </a>
+  </Link>
+
+10.
