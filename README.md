@@ -244,3 +244,19 @@ Planing:
 - Create a pages/subscriptions.js - similar code like index.js but we pass a subscriptions parameter with the value of the current user id:
   let videos = await getVideos({ subscriptions: session.user.id }, prisma)
 - link to this page in the Heading component
+
+11. Increment views
+
+- video/[id].js import { useEffect }, and add in SingleVideo function that useEffect to fire side effect. In this case we want to increment views,
+- also create pages/api/view.js endpoint and add logic to update videto by incrementig its views for 1 :
+  await prisma.video.update({
+  where: { id: req.body.video },
+  data: {
+  views: {
+  increment: 1,
+  },
+  },
+  })
+
+- if user has a video with 0 views, changde code in pages/video/[id].js
+  and add {video.views + 1} views
