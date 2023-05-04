@@ -1,4 +1,8 @@
 YOUTUBE-CLONE Project
+~ used technologies: NextJs, React, Postgres with Prisma for DB management stored on Railways,
+~ live link :
+
+Project contains :
 
 - a homepage
   - lists all the most recent videos, in reverse chronological order until the site grows and we’ll introduce an algorithm
@@ -260,3 +264,21 @@ Planing:
 
 - if user has a video with 0 views, changde code in pages/video/[id].js
   and add {video.views + 1} views
+
+12. Post new video
+
+- In the pages/channel/[username].js file add a link to /upload if the current channel is the user’s own channel,
+- in pages add new upload.js file that contains form with 3 fields:
+  a title, a thumbnail image and the video file,
+- add endpoint pages/api/upload.js - where we receive data from upload.js form and we use the upload function from lib/upload.js to upload the files to S3 and get their URLs, which we put in the database when we create a new video entry,
+
+//TODO
+
+- Hide the “Subscribe” button if the user is not logged in,
+- Add the ability to write comments,
+- Let logged in users like/dislike videos,
+- Add a “played” flag when a logged in user views a video,
+- Allow to change the visibility of a video :
+  Videos could be set in 2 ways: public or private,
+- In the single video page show other videos from the author’s channel,
+- List somewhere the channels user is subscribed to...

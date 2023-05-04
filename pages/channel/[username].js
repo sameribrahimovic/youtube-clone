@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Head from "next/head";
+import Link from "next/link";
 import { useSession, getSession } from "next-auth/react";
 import { amount } from "lib/config";
 import prisma from "lib/prisma";
@@ -63,7 +64,14 @@ export default function Channel({
             {/* if user is on it's own profile do not show subscribe button, else 
             if user visiting other users profile, show that button */}
             {session && user.id === session.user.id ? (
-              <></>
+              <>
+                {/* show this link only if user is accesing its own chanel */}
+                <Link href={`/upload`}>
+                  <a className="bg-green-500 px-3 py-2  rounded-md">
+                    Upload new video
+                  </a>
+                </Link>
+              </>
             ) : (
               <SubscribedButton user={user} subscribed={subscribed} />
             )}
