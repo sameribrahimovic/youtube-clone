@@ -9,8 +9,6 @@ import Heading from "components/Heading";
 import Video from "components/Video";
 
 export default function SingleVideo({ video, videos }) {
-  if (!video) return <p className="text-center p-5">Video does not exist 😞</p>;
-
   //to fire side effects!
   useEffect(() => {
     const incrementViews = async () => {
@@ -27,6 +25,7 @@ export default function SingleVideo({ video, videos }) {
     incrementViews();
   }, []);
 
+  if (!video) return <p className="text-center p-5">Video does not exist 😞</p>;
   return (
     <>
       <Heading />
