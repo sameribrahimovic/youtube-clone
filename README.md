@@ -1,4 +1,5 @@
 YOUTUBE-CLONE Project
+
 ~ used technologies: NextJs, React, Postgres with Prisma for DB management stored on Railways,
 
 ~ live link : sm-youtube-clone.vercel.app/
